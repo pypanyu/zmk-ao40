@@ -15,5 +15,7 @@
 include:
   - board: nice_nano_v2
     shield: ao40_left
+    artifact-name: ao40
   - board: nice_nano_v2
     shield: ao40_right
+    artifact-name: ao40
