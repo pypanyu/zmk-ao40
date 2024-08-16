@@ -14,4 +14,6 @@
 ---
 include:
   - board: nice_nano_v2
-    shield: ao40
+    shield: ao40_left
+ - board: nice_nano_v2
+    shield: ao40_right  
