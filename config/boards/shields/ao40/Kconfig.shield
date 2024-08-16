@@ -1,0 +1,5 @@
+config SHIELD_AO40_LEFT
+    def_bool $(shields_list_contains,ao40_left)
+
+config SHIELD_AO40_RIGHT
+    def_bool $(shields_list_contains,ao40_right)

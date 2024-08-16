@@ -1,0 +1,11 @@
+file_format: "1"
+id: ao40
+name: ao40
+type: shield
+url: https://github.com/
+requires: [pro_micro]
+features:
+  - keys
+siblings:
+  - ao40_left
+  - ao40_right
