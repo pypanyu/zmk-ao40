@@ -45,7 +45,7 @@
 
         layer_1 {
             bindings = <
-&kp ESC     &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp DOT        &trans             &trans           &kp MINUS  &kp EQUAL  &kp GRAVE
+&kp ESC     &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp KP_DOT     &trans             &trans           &kp MINUS  &kp EQUAL  &kp GRAVE
 &kp CAPS    &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp NUMBER_0   &trans             &trans           &kp LBKT   &kp RBKT   &kp BSLH
 &kp LSHIFT  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp BACKSPACE  &kp C_VOLUME_DOWN  &kp C_VOLUME_UP  &kp SEMI   &kp APOS   &kp RSHFT
 &trans      &trans        &trans        &trans        &kp SPACE      &kp BACKSPACE      &trans           &kp LALT   &kp LGUI   &kp LCTRL
