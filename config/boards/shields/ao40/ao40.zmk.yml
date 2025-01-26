@@ -1,11 +1,11 @@
-file_format: "1"
+file_format: "2"   file_format:“1”
 id: ao40
-name: ao40
-type: shield
+name: ao40   名字:ao40
+type: shield   类型:盾
 url: https://github.com/
-requires: [pro_micro]
-features:
-  - keys
-siblings:
-  - ao40_left
+requires: [pro_micro]   要求:[pro_micro]
+features:   特点:
+  - keys   ——钥匙
+siblings:   兄弟姐妹:
+  - ao40_left   ——ao40_left
   - ao40_right
