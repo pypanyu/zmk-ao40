@@ -75,8 +75,18 @@
 &kp LCTRL  &kp LGUI  &kp LALT  &taptap LSHIFT TAB  &trans   &trans        &trans        &trans        &trans        &bootloader
             >;
         };
+
+        layer_4 {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+            >;
+        };
     };
 };
+
 >;
 };
 };
