@@ -1,11 +1,11 @@
-manifest:   清单:
-  remotes:   遥控器:
-    - name: zmkfirmware   —名称：zmkfirmware
+manifest:
+  remotes:
+    - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-  projects:   项目:
+  projects:
     - name: zmk
-      remote: zmkfirmware   边远:zmkfirmware
-      revision: main   主要修订:1
-      import: app/west.yml   进口:app / west.yml
-  self:   自我:
-    path: config   路径:配置
+      remote: zmkfirmware
+      revision: main
+      import: app/west.yml
+  self:
+    path: config
