@@ -1,8 +1,13 @@
+#define ZMK_POINTING_DEFAULT_MOVE_VAL 2500  // default: 600
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 40    // default: 10
+
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/pointing.h>
+#include <dt-bindings/zmk/pointing.h>
+#include <dt-bindings/zmk/pointing.h>
 
 / {
     behaviors {
@@ -21,13 +26,14 @@
         holdhold: holdhold {
             compatible = "zmk,behavior-hold-tap";
             label = "HOLDHOLD";
-            bindings = <&mo>, <&kt>;
+            bindings = <&mo>, <&kp>;
 
             #binding-cells = <2>;
-            flavor = "balanced";
+            flavor = "tap-unless-interrupted";
             require-prior-idle-ms = <150>;
-            quick-tap-ms = <180>;
             tapping-term-ms = <200>;
+            retro-tap;
+            quick-tap-ms = <180>;
         };
     };
 
@@ -36,38 +42,117 @@
 
         default_layer {
             bindings = <
-&lt 2 Q    &kp W     &kp E                  &kp R    &kp T        &kp Y            &kp U        &kp I      &kp O      &kp P
-&kp A      &kp S     &kp D                  &kp F    &kp G        &kp H            &kp J        &kp K      &kp L      &kp FSLH
-&kp Z      &kp X     &kp C                  &kp V    &kp B        &kp N            &kp M        &kp COMMA  &kp DOT    &kp RSHFT
-&kp LCTRL  &kp LGUI  &taptap LEFT_ALT CAPS  &kp TAB  &lt 1 SPACE  &lt 1 BACKSPACE  &lt 2 ENTER  &lt 3 DEL  &kp PG_DN  &kp PG_UP
+&lt 3 Q    &kp W     &kp E                  &kp R               &kp T        &kp Y                  &kp U        &kp I      &kp O      &kp P
+&kp A      &kp S     &kp D                  &kp F               &kp G        &kp H                  &kp J        &kp K      &kp L      &kp FSLH
+&kp Z      &kp X     &kp C                  &kp V               &kp B        &kp N                  &kp M        &kp COMMA  &kp DOT    &kp RSHFT
+&kp LCTRL  &kp LGUI  &taptap LEFT_ALT CAPS  &taptap LSHIFT TAB  &lt 1 SPACE  &holdhold 1 BACKSPACE  &lt 2 ENTER  &lt 3 DEL  &kp PG_UP  &kp PG_DN
             >;
         };
 
         layer_1 {
             bindings = <
-&kp ESC     &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp KP_DOT     &trans             &trans           &kp MINUS  &kp EQUAL  &kp GRAVE
-&kp CAPS    &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp NUMBER_0   &trans             &trans           &kp LBKT   &kp RBKT   &kp BSLH
-&kp LSHIFT  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp BACKSPACE  &kp C_VOLUME_DOWN  &kp C_VOLUME_UP  &kp SEMI   &kp APOS   &kp RSHFT
-&trans      &trans        &trans        &trans        &kp SPACE      &kp BACKSPACE      &trans           &kp LALT   &kp LGUI   &kp LCTRL
+&kp ESC    &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3        &kp KP_DOT     &trans             &trans           &kp MINUS  &kp EQUAL  &kp GRAVE
+&kp LSHFT  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6        &kp NUMBER_0   &trans             &kp LSHFT        &kp LBKT   &kp RBKT   &kp BSLH
+&kp CAPS   &kp N7        &kp NUMBER_8  &kp NUMBER_9        &kp BACKSPACE  &kp C_VOLUME_DOWN  &kp C_VOLUME_UP  &kp SEMI   &kp APOS   &kp RSHFT
+&kp LCTRL  &kp LGUI      &kp LALT      &taptap LSHIFT TAB  &kp SPACE      &kp BACKSPACE      &trans           &kp LALT   &kp LGUI   &kp LCTRL
             >;
         };
 
         layer_2 {
             bindings = <
-&trans  &kp F1  &kp F2   &kp F3   &kp F4   &trans     &kp HOME  &kp UP     &kp END    &trans
-&trans  &kp F5  &kp F6   &kp F7   &kp F8   &kp PG_UP  &kp LEFT  &kp DOWN   &kp RIGHT  &kp PG_DN
-&trans  &kp F9  &kp F10  &kp F11  &kp F12  &trans     &trans    &trans     &trans     &kp RSHFT
-&trans  &trans  &trans   &trans   &trans   &trans     &trans    &kp LCTRL  &kp LGUI   &kp LALT
+&kp ESC         &mmv MOVE_UP    &mkp MB4         &mkp MB5            &trans    &trans   &kp PG_DN  &kp UP    &kp PG_UP  &kp DEL
+&mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc SCRL_UP        &trans    &kp END  &kp LEFT   &kp DOWN  &kp RIGHT  &kp HOME
+&kp LSHFT       &mkp MB3        &mkp MB2         &msc SCRL_DOWN      &trans    &trans   &trans     &trans    &trans     &kp RSHFT
+&kp LCTRL       &kp LGUI        &kp LALT         &taptap LSHIFT TAB  &mkp MB1  &trans   &trans     &kp LALT  &kp LGUI   &kp LCTRL
             >;
         };
 
         layer_3 {
             bindings = <
-&bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &trans  &trans  &trans  &trans  &trans
-&bootloader   &trans        &trans        &bt BT_CLR    &out OUT_TOG  &trans  &trans  &trans  &trans  &trans
-&trans        &trans        &trans        &out OUT_USB  &out OUT_TOG  &trans  &trans  &trans  &trans  &trans
-&trans        &trans        &trans        &trans        &trans        &trans  &trans  &trans  &trans  &trans
+&kp ESC    &kp F1    &kp F2    &kp F3              &kp F4   &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
+&kp LSHFT  &kp F5    &kp F6    &kp F7              &kp F8   &trans        &trans        &trans        &bt BT_CLR    &out OUT_TOG
+&kp CAPS   &kp F9    &kp F10   &kp F11             &kp F12  &trans        &trans        &trans        &trans        &trans
+&kp LCTRL  &kp LGUI  &kp LALT  &taptap LSHIFT TAB  &trans   &trans        &trans        &trans        &trans        &bootloader
             >;
         };
     };
+};
+#define ZMK_POINTING_DEFAULT_MOVE_VAL 2500 //默认值：600
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 40 //默认值：10
+
+# include < behaviors.dtsi >
+# include < dt-bindings / zmk / bt.h >
+# include < dt-bindings / zmk / keys.h >
+# include < dt-bindings / zmk / outputs.h >
+# include < dt-bindings / zmk / pointing.h >
+# include < dt-bindings / zmk / pointing.h >
+# include < dt-bindings / zmk / pointing.h >
+
+/ {
+行为{
+tap: tap {
+Compatible = "zmk,behavior-hold-tap"；
+label = "TAPTAP"；
+Bindings = <&kp>, <&kp>；
+
+#binding-cells = <2>；
+抽头-term-ms = <200>；
+快拍-ms = <180>；
+Require-prior-idle-ms = <150>；
+风味= "tap-preferred"；
+};
+
+hold: hold {
+Compatible = "zmk,behavior-hold-tap"；
+label = "HOLDHOLD"；
+Bindings = <&mo>, <&kp>；
+
+#binding-cells = <2>；
+Flavor =“敲击，除非被打断”；
+Require-prior-idle-ms = <150>；
+抽头-term-ms = <200>；
+retro-tap;
+快拍-ms = <180>；
+};
+};
+
+keymap {
+Compatible = "zmk,keymap"；
+
+default_layer {
+绑定= <
+Q &kp W &kp E &kp R &kp T &kp Y &kp U &kp I &kp O &kp P
+&kp A & S &kp D &kp F &kp G &kp H &kp J &kp K &kp L &kp FSLH
+&kp Z &kp X &kp C &kp V &kp B &kp N &kp M &kp COMMA &kp DOT &kp RSHFT
+&kp LCTRL &kp LGUI &taptap LEFT_ALT CAPS &taptap LSHIFT TAB < 1 SPACE &按住1 BACKSPACE < 2 ENTER < 3 DEL &kp PG_UP &kp PG_DN
+>;
+};
+
+layer_1 {
+绑定= <
+kp ESC &kp NUMBER_1 &kp NUMBER_2 &kp NUMBER_3 &kp KP_DOT &trans &trans &kp减去&kp等于&kp GRAVE
+kp LSHFT &kp NUMBER_4 &kp NUMBER_5 &kp NUMBER_6 &kp NUMBER_0 &trans &kp LSHFT &kp LBKT &kp RBKT &kp BSLH
+&kp CAPS &kp N7 &kp NUMBER_8 &kp NUMBER_9 &kp BACKSPACE &kp C_VOLUME_DOWN &kp C_VOLUME_UP &kp SEMI &kp APOS &kp RSHFT
+&kp LCTRL &kp LGUI &kp LALT &点击LSHIFT TAB &kp SPACE &kp BACKSPACE &trans &kp LALT &kp LGUI &kp LCTRL
+>;
+};
+
+layer_2 {
+绑定= <
+&kp ESC &mmv MOVE_UP &mkp MB4 &mkp MB5 &trans &trans &kp PG_DN &kp UP &kp PG_UP &kp DEL
+&mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &msc SCRL_UP &trans &kp END &kp LEFT &kp DOWN &kp RIGHT &kp HOME
+&kp LSHFT &mkp MB3 &mkp MB2 &msc SCRL_DOWN &trans &trans &trans &trans &trans &trans &trans &trans &kp RSHFT
+&kp LCTRL &kp LGUI &kp LALT &点击LSHIFT TAB &mkp MB1 &trans &trans &kp LALT &kp LGUI &kp LCTRL
+>;
+};
+
+layer_3 {
+绑定= <
+&kp ESC &kp F1 &kp F2 &kp F3 &kp F4 &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4
+&kp LSHFT &kp F5 &kp F6 &kp F7 &kp F8 &trans &trans &trans &trans & BT_CLR &out out & tog
+&kp CAPS &kp F9 &kp F10 &kp F11 &kp F12 &trans &trans &trans &trans &trans &trans &trans &trans
+&kp LCTRL &kp LGUI &kp LALT &点击LSHIFT TAB &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &bootloader
+>;
+};
+};
 };
