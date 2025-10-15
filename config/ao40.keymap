@@ -62,6 +62,36 @@
             key-positions = <16 17>;
             timeout-ms = <50>;
         };
+
+        news {
+            bindings = <&kp LC(N)>;
+            key-positions = <10 11>;
+        };
+
+        desk {
+            bindings = <&kp LG(D)>;
+            key-positions = <11 12>;
+        };
+
+        create {
+            bindings = <&kp LG(E)>;
+            key-positions = <12 13>;
+        };
+
+        altf4 {
+            bindings = <&kp RA(F4)>;
+            key-positions = <13 14>;
+        };
+
+        guilock {
+            bindings = <&kp LG(L)>;
+            key-positions = <23 24>;
+        };
+
+        backspace {
+            bindings = <&kp BACKSPACE>;
+            key-positions = <8 9>;
+        };
     };
 
     keymap {
